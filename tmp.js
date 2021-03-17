@@ -112,27 +112,39 @@ const icons = [
 // 	`
 // });
 
+
 /*  milestone 2:
 definire un array di colori e associare ad ogni tipo di icona un colore.
 Visualizzare le icone di colore diverso in base al tipo. */
 
+const colors = ["blue", "orange", "green"];
 
+//definisco le tipologie
+var types = [];
 
-// animali vegetali user
-
-const iconsColor = icons.map((element)=>{
-	const colors = ["blue", "orange", "green"];
-
-	if (element.type == "animal") {
-		element.color = colors[0];
-		return element	
-	} else if (element.type == "vegetable") {
-		element.color = colors[1];
-		return element
-	} else if (element.type == "user") {
-		element.color = colors[2];
-		return element
+icons.forEach((element)=>{
+	if (types.includes(element.type)==false){
+		types.push(element.type);
 	}
+});
+
+//associo il colore alla tipologia
+const iconsColor = icons.map((element)=>{
+
+	switch (element.type) {
+		case "animal":
+			element.color = colors[types.indexOf("animal")];
+			return element;
+		
+		case "vegetable":
+			element.color = colors[types.indexOf("vegetable")];
+		 	return element;
+
+		case "user":
+			element.color = colors[types.indexOf("user")];
+		  	return element;
+	  };
+
 });
 
 console.log(iconsColor)
@@ -144,4 +156,73 @@ icons.forEach((element)=>{
 	`
 	<div class="iconContainer" style="color: ${color}"> <i class="${family} ${prefix}${name}"></i> <span class="iconName">${name}</span> </div>
 	`
+});
+
+
+/*  milestone 3:
+aggiungere una select per filtrare le icone in base al tipo.
+Popolare le options della select dinamicamente e, ogni volta 
+che cambia il valore selezionato, visualizzare le icone corrispondenti. */
+
+// tipi: animali vegetali user
+const animals = icons.filter((element)=>{
+	if (element.type == "animal")
+	return element.type;
+});
+const vegetables = icons.filter((element)=>{
+	if (element.type == "vegetable")
+	return element.type;
+});
+const users = icons.filter((element)=>{
+	if (element.type == "user")
+	return element.type;
+});
+
+const selectContainer = $(".selectContainer");
+const select = $("#select");
+
+//milestone 3
+select.change( {selectContainer}, function () {
+	//pulisco il container prima di ogni selezione
+	$("#container").html(" ");
+
+	const optionSelected = $(this).val();
+	switch (optionSelected) {
+		case "animal":
+			return animals.forEach((element)=>{
+				const {name, prefix, type, family, color} = element;
+				document.getElementById("container").innerHTML +=
+				`
+				<div class="iconContainer" style="color: ${color}"> <i class="${family} ${prefix}${name}"></i> <span class="iconName">${name}</span> </div>
+				`
+			});
+		
+		case "vegetable":
+			return vegetables.forEach((element)=>{
+				const {name, prefix, type, family, color} = element;
+				document.getElementById("container").innerHTML +=
+				`
+				<div class="iconContainer" style="color: ${color}"> <i class="${family} ${prefix}${name}"></i> <span class="iconName">${name}</span> </div>
+				`
+			});
+
+		case "user":
+			return users.forEach((element)=>{
+				const {name, prefix, type, family, color} = element;
+				document.getElementById("container").innerHTML +=
+				`
+				<div class="iconContainer" style="color: ${color}"> <i class="${family} ${prefix}${name}"></i> <span class="iconName">${name}</span> </div>
+				`
+			});
+
+		case "all":
+			return icons.forEach((element)=>{
+				const {name, prefix, type, family, color} = element;
+				document.getElementById("container").innerHTML +=
+				`
+				<div class="iconContainer" style="color: ${color}"> <i class="${family} ${prefix}${name}"></i> <span class="iconName">${name}</span> </div>
+				`
+			});
+
+	  };
 });
