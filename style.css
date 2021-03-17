@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: lightcyan;
+}
+
+.text_center {
+    text-align: center;
+}
+
+main {
+    width: 80%;
+    margin: 5vh auto;
+    padding: 20px;
+    height: 90vh;
+    background-color: lightblue;
+    border-radius: 20px;
+}
+
+.selectContainer {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.selectContainer h2 {
+    margin: 0 20px 0 0;
+}
+
+.selectContainer select {
+   
+}
+
+.iconContainer {
+    width: calc(100% / 3 - 20px);
+    text-align: center;
+    background-color: rgb(124, 182, 192);
+    margin: 10px;
+    border-radius: 10px;
+    float: left;
+}
+
+.fas {
+    font-size: 30px;
+    padding: 10px;
+}
+
+.iconName {
+    text-align: center;
+}
