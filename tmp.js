@@ -182,7 +182,7 @@ const selectContainer = $(".selectContainer");
 const select = $("#select");
 
 //milestone 3
-select.change( {selectContainer}, function () {
+select.change( function () {
 	//pulisco il container prima di ogni selezione
 	$("#container").html(" ");
 
