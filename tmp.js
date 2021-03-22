@@ -225,4 +225,12 @@ select.change( function () {
 			});
 
 	  };
+
+	  $(".container .iconContainer i").click(function(){
+		$(this).css("color","white");
+	  });
+
+	//   $("li").click(function () {
+	// 	$(this).toggleClass("white");
+	// });
 });
